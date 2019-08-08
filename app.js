@@ -1,15 +1,19 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var config = require('./config');
+// var config = require('./config');
 var cors = require('cors');
 var book = require('./models/bookModel');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 var app = express();
+
 app.use(cors()); // Used to allow Cross origin resource sharing.
 
 var port = process.env.PORT || 3000;
-var db = mongoose.connect('mongodb://localhost/bookAPI');
+var db = mongoose.connect(process.env.MONGO_URI);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
