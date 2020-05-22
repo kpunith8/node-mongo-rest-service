@@ -1,7 +1,6 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
-// var config = require('./config');
 var cors = require("cors");
 var book = require("./models/bookModel");
 const dotenv = require("dotenv");
@@ -14,7 +13,10 @@ var app = express();
 app.use(cors()); // Used to allow Cross origin resource sharing.
 
 var port = process.env.PORT || 3000;
-var db = mongoose.connect(process.env.MONGO_URI);
+const mongooseOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+mongoose.connect(process.env.MONGO_URI, mongooseOptions, () =>
+  console.log(`Database connected!! Yay :)`)
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,7 +26,7 @@ var bookRouter = require("./routes/bookRoutes")(book);
 app.use("/api/books", bookRouter); // access using, localhost:3000/api/books?gerne=Science
 
 app.get("/", function (req, res) {
-  res.send("Welcome to web services, Hi...!");
+  res.send("Welcome...");
 });
 
 // https://alexanderzeitler.com/articles/mongoose-referencing-schema-in-properties-and-arrays/

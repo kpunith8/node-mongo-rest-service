@@ -4,7 +4,7 @@
 
 - `MongoDB` - Database
 - `express` - You know right!!
-- `JWTtoken` - JWT tokens
+- `jsonwebtoken` - JWT tokens for authorization
 - `hapi/joi` - for validation
 - `cors` - express middleware to support Cross Origin Requests
 - `dotenv` - environment variables manager
@@ -18,8 +18,10 @@ $ npm install
 ```
 
 - Start the server, you need to have `.env` file created in the root folder with
-  `PORT` and `MONGO_URI` entries in it.
-- `MONGO_URI` can be local installation or your cloud db url
+  `PORT`, `MONGO_URI`, and `JWT_SECRET` entries in it.
+- `MONGO_URI` can be local installation or your cloud db url.
+- `JWT_SECRET` used to pass it as secret key to JWT web token
+
 ```
 $ npm start
 ```
