@@ -8,6 +8,7 @@
 - `hapi/joi` - for validation
 - `cors` - express middleware to support Cross Origin Requests
 - `dotenv` - environment variables manager
+- `bcryptjs` - for password encryption and decryption
 
 ## Getting started
 
