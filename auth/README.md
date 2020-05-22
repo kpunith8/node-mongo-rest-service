@@ -1,7 +1,5 @@
 # Authentication with JWT for login flow
 
-
-
 ## Libraries/tools used
 
 - `MongoDB` - Database
