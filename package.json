@@ -4,7 +4,7 @@
   "description": "Book API",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon auth/"
   },
   "repository": {
     "type": "git",
@@ -19,9 +19,9 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.7.5",
-    "nodemon": "^1.19.1"
+    "mongoose": "^5.9.15",
+    "nodemon": "^2.0.4"
   }
 }

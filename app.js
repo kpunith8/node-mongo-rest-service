@@ -23,7 +23,7 @@ var bookRouter = require("./routes/bookRoutes")(book);
 
 app.use("/api/books", bookRouter); // access using, localhost:3000/api/books?gerne=Science
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.send("Welcome to web services, Hi...!");
 });
 
@@ -35,15 +35,15 @@ const personSchema = Schema({
   _id: Schema.Types.ObjectId,
   name: String,
   age: Number,
-  stories: [{ type: Schema.Types.ObjectId, ref: "Story" }]
+  stories: [{ type: Schema.Types.ObjectId, ref: "Story" }],
 });
 
 const storySchema = Schema({
   author: { type: Schema.Types.ObjectId, ref: "Person" },
   title: String,
   fans: [
-    { likes: String, fanId: { type: Schema.Types.ObjectId, ref: "Person" } }
-  ]
+    { likes: String, fanId: { type: Schema.Types.ObjectId, ref: "Person" } },
+  ],
 });
 
 const Story = mongoose.model("Story", storySchema);
@@ -58,40 +58,43 @@ Story.deleteMany({}).exec();
 const author = new Person({
   _id: new mongoose.Types.ObjectId(),
   name: "Ian Fleming",
-  age: 50
+  age: 50,
 });
 
 const fan1 = new Person({
   _id: new mongoose.Types.ObjectId(),
   name: "Punith",
-  age: 30
+  age: 30,
 });
 
 const fan2 = new Person({
   _id: new mongoose.Types.ObjectId(),
   name: "Ryan",
-  age: 35
+  age: 35,
 });
 
 fan1.save();
 fan2.save();
 
-author.save(err => {
+author.save((err) => {
   if (err) console.error(err);
 
   const story1 = new Story({
     title: "Casino Royale1",
     author: author._id, // assign the _id from the author
-    fans: [{ fanId: fan2._id, likes: 100 }, { fanId: fan1._id, likes: 80 }]
+    fans: [
+      { fanId: fan2._id, likes: 100 },
+      { fanId: fan1._id, likes: 80 },
+    ],
   });
 
-  story1.save(err => {
+  story1.save((err) => {
     if (err) console.error(err);
 
     // Pushing child refs to stories array before querying the stories
     // This can be avoided to have the stories pushed to person, since stories have a person id as reference
     author.stories.push(story1);
-    author.save(err => {
+    author.save((err) => {
       if (err) console.error(err);
 
       // Person.findOne({ name: "Ian Fleming" })
@@ -102,7 +105,7 @@ author.save(err => {
       //   });
 
       let event2 = Person.findOne({ name: "Ian Fleming" }).populate("stories");
-      event2.then(data => {
+      event2.then((data) => {
         // console.log("Stories:", data);
       });
 
@@ -124,10 +127,10 @@ author.save(err => {
   });
 });
 
-queryExecutor.on("dataReady", data => {
+queryExecutor.on("dataReady", (data) => {
   // console.log("Data in event emitter:", data);
 });
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log("Running on PORT: " + port);
 });
