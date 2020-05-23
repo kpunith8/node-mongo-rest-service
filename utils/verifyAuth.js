@@ -12,7 +12,7 @@ const verifyAuth = (req, res, next) => {
   if (!authToken) return res.status(401).send(`Access Denied`);
 
   try {
-    const verified = jwt.verify(authToken, process.env.JWT_ACCESS_TOKEN, {expiresIn: '60m'});
+    const verified = jwt.verify(authToken, process.env.JWT_ACCESS_TOKEN);
     res.user = verified;
     next();
   } catch (err) {
