@@ -4,7 +4,8 @@
   "description": "Book API",
   "main": "index.js",
   "scripts": {
-    "start": "node auth/"
+    "start": "node auth/",
+    "dev-start": "nodemon auth/"
   },
   "repository": {
     "type": "git",

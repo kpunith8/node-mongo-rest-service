@@ -24,7 +24,7 @@ $ npm install
 - `JWT_SECRET` used to pass it as secret key to JWT web token
 
 ```
-$ npm start
+$ npm run dev-start
 ```
 
 - Thats it, you are good to go

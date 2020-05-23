@@ -45,7 +45,7 @@ authRouter.post("/login", async (req, res) => {
   // Create assign and JWT token
   // Auth tokens can have an expiry time so that user needs
   // login each time to access after an expiry ends
-  const JWTToken = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+  const JWTToken = jwt.sign({ _id: user._id }, process.env.JWT_ACCESS_TOKEN);
   res.header("auth-token", JWTToken); // send it or set the header
   res.status(200).send(JWTToken);
 });
