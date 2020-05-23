@@ -40,3 +40,7 @@ $ npm start
 - `POST` - `/api/user/register` - For registration - Required fields - `name`, `email`, `password`
 - `POST` - `/api/user/login` - For Login and to receive the JWT token - Required fields -  `email`, `password`
 - `GET` - `/api/posts` - secured route - header `auth-token` required.
+
+## Deployed in heroku
+
+- https://node-mongo-jwt-auth.herokuapp.com/ visit and access the above routes
