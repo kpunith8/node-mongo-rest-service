@@ -1,1 +1,1 @@
-web: node index.js
+web: node auth/index.js
