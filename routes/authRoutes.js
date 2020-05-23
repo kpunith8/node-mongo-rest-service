@@ -48,7 +48,7 @@ authRouter.post("/login", async (req, res) => {
   // login each time to access after an expiry ends
   const JWTToken = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
   res.header("auth-token", JWTToken); // send it or set the header
-  res.status(200).send(`Login successful`);
+  res.status(200).send(JWTToken);
 });
 
 module.exports = authRouter;

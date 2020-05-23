@@ -4,7 +4,7 @@
   "description": "Book API",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon auth/"
+    "start": "node auth/"
   },
   "repository": {
     "type": "git",
@@ -13,7 +13,9 @@
   "keywords": [
     "node",
     "rest",
-    "services"
+    "services",
+    "jwt",
+    "auth"
   ],
   "author": "Punith K",
   "dependencies": {

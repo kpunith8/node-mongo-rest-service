@@ -9,6 +9,7 @@
 - `cors` - express middleware to support Cross Origin Requests
 - `dotenv` - environment variables manager
 - `bcryptjs` - for password encryption and decryption
+- `heroku` - for deployment - Check it out, it is easy and fun
 
 ## Getting started
 
@@ -26,4 +27,16 @@ $ npm install
 $ npm start
 ```
 
-- Thats it, you are good to go.
+- Thats it, you are good to go
+
+- When you are making the call to `secured-routes` for routes for eg:
+  `/api/posts` route, copy the `JWT token` received after the successful login and
+  set the header `auth-token` from `POSTMAN Client` or from
+  any of your frameworks, when making `GET` or `POST` requests.
+  `auth-token`: `Received Auth token`
+
+## Available routes
+
+- `POST` - `/api/user/register` - For registration - Required fields - `name`, `email`, `password`
+- `POST` - `/api/user/login` - For Login and to receive the JWT token - Required fields -  `email`, `password`
+- `GET` - `/api/posts` - secured route - header `auth-token` required.
