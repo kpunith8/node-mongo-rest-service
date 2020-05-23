@@ -1,0 +1,48 @@
+<style>
+  body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .author-info {
+    margin-top: 150px;
+  }
+</style>
+<div>
+  <h2 class="heading">Node Authentication Using JWT</h2>
+  <div class="routes-list">
+    <h3>Available Routes</h3>
+    <ul>
+      <li>
+        <a href="#">/app/user/register</a>
+        <h4>Fields: <code>name, password, email</code></h4>
+      </li>
+      <li>
+        <a href="#">/app/user/login</a>
+        <h4>Fields: <code>password, email</code></h4>
+        <h4>Returns: <code>JWT Token</code></h4>
+      </li>
+      <li>
+        <a href="#">/app/posts</a>
+        <h4>
+          Send JWT token in the header
+          <code>auth-token</code>
+        </h4>
+      </li>
+    </ul>
+    <div class="author-info">
+      <p style="color: chocolate; text-align: center;">
+        Developed by: <a href="https://github.com/kpunith8/">Punith K</a>
+      </p>
+    </div>
+  </div>
+  <div></div>
+</div>
