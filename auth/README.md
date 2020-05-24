@@ -18,11 +18,13 @@
 $ npm install
 ```
 
-- Start the server, you need to have `.env` file created in the root folder with
-  `PORT`, `MONGO_URI`, and `JWT_SECRET` entries in it.
+- You need to have `.env` file created in the root folder with
+  `PORT`, `MONGO_URI`, and `JWT_ACCESS_TOKEN` entries in it.
 - `MONGO_URI` can be local installation or your cloud db url.
-- `JWT_SECRET` used to pass it as secret key to JWT web token
+- `JWT_ACCESS_TOKEN` used to pass it as secret token to `JWT.sign()` while creating one,
+  token has an expiry time of `60 minutes`
 
+- Start the dev-server
 ```
 $ npm run dev-start
 ```
