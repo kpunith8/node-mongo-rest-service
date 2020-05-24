@@ -17,17 +17,17 @@ mongoose.connect(process.env.MONGO_URI, mongooseOptions, () =>
 );
 
 app.use(express.json());
+//Serves static html files using ejs view engine
 app.set("view engine", "ejs");
-
-//Serves static html files using ejs
-app.use("/", (req, res) => {
-  res.render("index.ejs");
-});
 
 app.use("/api/user", authRoutes);
 // Now the `posts` end point is protected, if no auth token, 401 sent
 // and not allowed to access
 app.use("/api/posts", postRoutes);
+
+app.get("/", (req, res) => {
+  res.render("index.ejs");
+});
 
 app.listen(PORT, () => {
   console.log(`Server up and running on ${PORT}`);
