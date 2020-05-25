@@ -1,27 +1,25 @@
-var express = require("express");
-var mongoose = require("mongoose");
-var bodyParser = require("body-parser");
-var cors = require("cors");
-var book = require("./models/bookModel");
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const book = require("./models/bookModel");
+const Person = require("./models/person");
+const Story = require("./models/story");
 const dotenv = require("dotenv");
-const QueryExecutor = require("./QueryExecutor.js");
+const QueryExecutor = require("./utils/QueryExecutor.js");
+const connectToDatabase = require("./utils/dbConnection");
 
 dotenv.config();
+const PORT = process.env.PORT || 3000;
 
-var app = express();
+connectToDatabase();
 
+const app = express();
 app.use(cors()); // Used to allow Cross origin resource sharing.
-
-var port = process.env.PORT || 3000;
-const mongooseOptions = { useNewUrlParser: true, useUnifiedTopology: true };
-mongoose.connect(process.env.MONGO_URI, mongooseOptions, () =>
-  console.log(`Database connected!! Yay :)`)
-);
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var bookRouter = require("./routes/bookRoutes")(book);
+const bookRouter = require("./routes/bookRoutes")(book);
 
 app.use("/api/books", bookRouter); // access using, localhost:3000/api/books?gerne=Science
 
@@ -29,30 +27,10 @@ app.get("/", function (req, res) {
   res.send("Welcome...");
 });
 
-// https://alexanderzeitler.com/articles/mongoose-referencing-schema-in-properties-and-arrays/
-// Mongoose populate() to join multiple documents
-const Schema = mongoose.Schema;
-
-const personSchema = Schema({
-  _id: Schema.Types.ObjectId,
-  name: String,
-  age: Number,
-  stories: [{ type: Schema.Types.ObjectId, ref: "Story" }],
-});
-
-const storySchema = Schema({
-  author: { type: Schema.Types.ObjectId, ref: "Person" },
-  title: String,
-  fans: [
-    { likes: String, fanId: { type: Schema.Types.ObjectId, ref: "Person" } },
-  ],
-});
-
-const Story = mongoose.model("Story", storySchema);
-const Person = mongoose.model("Person", personSchema);
-
 const queryExecutor = new QueryExecutor();
 
+// https://alexanderzeitler.com/articles/mongoose-referencing-schema-in-properties-and-arrays/
+// Mongoose populate() to join multiple documents
 // Remove all the records before inserting new ones, otherwise it inserts them all the time you run this
 Person.deleteMany({}).exec();
 Story.deleteMany({}).exec();
@@ -108,7 +86,7 @@ author.save((err) => {
 
       let event2 = Person.findOne({ name: "Ian Fleming" }).populate("stories");
       event2.then((data) => {
-        // console.log("Stories:", data);
+        console.log("Stories:", data);
       });
 
       // Using Event emiiters
@@ -130,9 +108,9 @@ author.save((err) => {
 });
 
 queryExecutor.on("dataReady", (data) => {
-  // console.log("Data in event emitter:", data);
+  console.log("Data in event emitter:", data);
 });
 
-app.listen(port, function () {
-  console.log("Running on PORT: " + port);
+app.listen(PORT, () => {
+  console.log("Server up and running on:" + PORT);
 });
