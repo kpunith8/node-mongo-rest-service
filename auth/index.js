@@ -8,7 +8,7 @@ const connectToDatabase = require("../utils/dbConnection");
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 
-connectToDatabase();
+connectToDatabase(process.env.MONGO_URI);
 
 const app = express();
 app.use(cors()); // Used to allow Cross origin resource sharing.
