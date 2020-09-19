@@ -1,48 +1,64 @@
-<style>
-  body {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 100%;
-  }
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Node Mongo Auth API</title>
+  </head>
+  <style>
+    body {
+      padding: 0;
+      box-sizing: border-box;
+      width: 70%;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: cornsilk;
+    }
 
-  ul {
-    list-style: none;
-    padding-left: 0;
-  }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
 
-  .author-info {
-    margin-top: 150px;
-  }
-</style>
-<div>
-  <h2 class="heading">Node Authentication Using JWT</h2>
-  <div class="routes-list">
-    <h3>Available Routes</h3>
-    <ul>
-      <li>
-        <a href="#">/app/user/register</a>
-        <h4>Fields: <code>name, password, email</code></h4>
-      </li>
-      <li>
-        <a href="#">/app/user/login</a>
-        <h4>Fields: <code>password, email</code></h4>
-        <h4>Returns: <code>JWT Token</code></h4>
-      </li>
-      <li>
-        <a href="#">/app/posts</a>
-        <h4>
-          Send JWT token in the header
-          <code>auth-token</code>
-        </h4>
-      </li>
-    </ul>
-    <div class="author-info">
-      <p style="color: chocolate; text-align: center;">
-        Developed by: <a href="https://github.com/kpunith8/">Punith K</a>
-      </p>
+    .author-info {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+    }
+
+    .http-type {
+      font-size: 20px;
+      font-weight: 600;
+    }
+  </style>
+  <body>
+    <h2 class="heading">Node Authentication and Authorization with JWT</h2>
+    <div class="routes-list">
+      <ul>
+        <li>
+          <span class="http-type">POST:</span>
+          <a href="#">/api/user/register</a>
+          <h4>Fields: <code>name, password, email</code></h4>
+        </li>
+        <li>
+          <span class="http-type">POST:</span>
+          <a href="#">/api/user/login</a>
+          <h4>Fields: <code>password, email</code></h4>
+          <h4>Returns: <code>JWT Token</code></h4>
+        </li>
+        <li>
+          <span class="http-type">GET:</span>
+          <a href="#">/api/posts</a>
+          <h4>
+            Send JWT token to authorize and to receive the data
+            <code>auth-token</code>
+          </h4>
+        </li>
+      </ul>
     </div>
-  </div>
-  <div></div>
-</div>
+    <div class="author-info">
+      <div>Developed by: </div>
+      <a href="https://github.com/kpunith8/">Punith K</a>
+    </div>
+  </body>
+</html>
