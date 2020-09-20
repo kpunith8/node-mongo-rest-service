@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { userValidation, loginValidation } = require("../utils/validation");
 const User = require("../models/user");
+const cookie = require('cookie')
 
 authRouter.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
@@ -42,13 +43,20 @@ authRouter.post("/login", async (req, res) => {
   const isValidPassword = await bcrypt.compare(password, user.password);
   if (!isValidPassword) return res.status(401).send(`Password is incorrect`);
 
-  // Create assign and JWT token
+  // Create and assign a JWT token
   // Auth tokens can have an expiry time so that user needs
   // login each time to access after an expiry ends
   const JWTToken = jwt.sign({ _id: user._id }, process.env.JWT_ACCESS_TOKEN, {
     expiresIn: "60m",
   });
-  res.header("auth-token", JWTToken); // send it or set the header
+  // res.header("auth-token", JWTToken); // send it or set the header
+  res.setHeader(
+    "Set-Cookie",
+    cookie.serialize("auth-token", JWTToken, {
+      // httpOnly: true,
+      maxAge: 60 * 30, // 30 mins
+    })
+  );
   res.status(200).send(JWTToken);
 });
 
