@@ -1,8 +1,8 @@
-var express = require('express');
+const express = require('express');
 
-var routes = function(book) {
-  var bookRouter = express.Router();
-  var bookController = require('../controllers/bookController')(book);
+const routes = function(book) {
+  const bookRouter = express.Router();
+  const bookController = require('../controllers/bookController')(book);
 
   bookRouter.route('/')
   .post(bookController.post)
@@ -48,7 +48,7 @@ var routes = function(book) {
         delete req.body._id;
       }
 
-      for (var p in req.body) {
+      for (const p in req.body) {
         req.book[p] = req.body[p];
       }
 

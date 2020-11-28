@@ -1,19 +1,19 @@
-var bookController = function(book) {
-  var post = function(req, res) {
-    var newBook = new book(req.body);
+const bookController = function (book) {
+  const post = function (req, res) {
+    const newBook = new book(req.body);
     newBook.save();
 
     res.status(201).send(newBook); // status created
   };
 
-  var get = function(req, res) {
-    var query = {};
+  const get = function (req, res) {
+    const query = {};
 
     if (req.query.genre) {
       query.genre = req.query.genre;
     }
 
-    book.find(query, function(err, books) {
+    book.find(query, function (err, books) {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -23,8 +23,8 @@ var bookController = function(book) {
   };
 
   return {
-    post: post,
-    get: get
+    post,
+    get,
   };
 };
 
